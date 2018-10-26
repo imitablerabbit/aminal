@@ -194,6 +194,12 @@ func (r *OpenGLRenderer) DrawCursor(col uint, row uint, colour config.Colour) {
 
 func (r *OpenGLRenderer) DrawCellBg(cell buffer.Cell, col uint, row uint, cursor bool, colour *config.Colour) {
 
+	if img := cell.Image(); img != nil {
+
+		//draw image
+		return
+	}
+
 	var bg [3]float32
 
 	if colour != nil {
@@ -217,6 +223,10 @@ func (r *OpenGLRenderer) DrawCellBg(cell buffer.Cell, col uint, row uint, cursor
 }
 
 func (r *OpenGLRenderer) DrawCellText(cell buffer.Cell, col uint, row uint, colour *config.Colour) {
+
+	if cell.Image() != nil {
+		return
+	}
 
 	var fg [3]float32
 

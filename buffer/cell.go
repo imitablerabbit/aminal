@@ -1,8 +1,11 @@
 package buffer
 
+import "image"
+
 type Cell struct {
 	r    rune
 	attr CellAttributes
+	rgba *image.RGBA
 }
 
 type CellAttributes struct {
@@ -14,6 +17,14 @@ type CellAttributes struct {
 	Blink     bool
 	Reverse   bool
 	Hidden    bool
+}
+
+func (cell *Cell) RGBA() *image.RGBA {
+	return cell.rgba
+}
+
+func (cell *Cell) SetRGBA(rgba image.RGBA) {
+	cell.rgba = &rgba
 }
 
 func (cell *Cell) Attr() CellAttributes {
