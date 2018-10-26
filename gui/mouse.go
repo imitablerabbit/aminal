@@ -13,8 +13,8 @@ import (
 func (gui *GUI) mouseMoveCallback(w *glfw.Window, xpos float64, ypos float64) {
 
 	px, py := w.GetCursorPos()
-	x := uint16(math.Floor((px - float64(gui.renderer.areaX)) / float64(gui.renderer.CellWidth())))
-	y := uint16(math.Floor((py - float64(gui.renderer.areaY)) / float64(gui.renderer.CellHeight())))
+	x := uint16(math.Floor((px) / float64(gui.charWidth)))
+	y := uint16(math.Floor((py) / float64(gui.charHeight)))
 	if gui.mouseDown {
 		gui.terminal.ActiveBuffer().EndSelection(x, y, false)
 	}
@@ -46,8 +46,8 @@ func (gui *GUI) mouseButtonCallback(w *glfw.Window, button glfw.MouseButton, act
 
 	// before we forward clicks on (below), we need to handle them locally for url clicking, text highlighting etc.
 	px, py := w.GetCursorPos()
-	x := uint16(math.Floor((px - float64(gui.renderer.areaX)) / float64(gui.renderer.CellWidth())))
-	y := uint16(math.Floor((py - float64(gui.renderer.areaY)) / float64(gui.renderer.CellHeight())))
+	x := uint16(math.Floor((px) / float64(gui.charWidth)))
+	y := uint16(math.Floor((py) / float64(gui.charHeight)))
 	tx := int(x) + 1 // vt100 is 1 indexed
 	ty := int(y) + 1
 

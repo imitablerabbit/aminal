@@ -16,7 +16,7 @@
 [[projects]]
   branch = "master"
   name = "github.com/go-gl/gl"
-  packages = ["all-core/gl"]
+  packages = ["all-core/gl","v2.1/gl","v3.2-core/gl"]
   revision = "629e6eb0370bc1987d806c0786368395657324a0"
 
 [[projects]]
@@ -68,6 +68,12 @@
   version = "v1.2.2"
 
 [[projects]]
+  branch = "master"
+  name = "github.com/tfriedel6/canvas"
+  packages = [".","glfwcanvas","glimpl/gogl"]
+  revision = "93d30a1ff7efe841cea20b9340570266caf8e539"
+
+[[projects]]
   name = "go.uber.org/atomic"
   packages = ["."]
   revision = "1ea20fb1cbb1cc08cbd0d913a96dead89aa18289"
@@ -88,12 +94,12 @@
 [[projects]]
   branch = "master"
   name = "golang.org/x/image"
-  packages = ["font","math/fixed"]
+  packages = ["bmp","font","math/fixed"]
   revision = "991ec62608f3c0da01d400756917825d1e2fd528"
 
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "62428a3f67dc7a8a89ecb5666b6d8a6641788f89c61d0b0b4dd99982923bb0c6"
+  inputs-digest = "39ee40b31347ecb7891699119863c4ee9d714d6a213841c6033637bf39186c65"
   solver-name = "gps-cdcl"
   solver-version = 1

@@ -37,10 +37,10 @@ func (gui *GUI) key(w *glfw.Window, key glfw.Key, scancode int, action glfw.Acti
 			modStr = "6"
 			switch key {
 			case glfw.KeyC:
-				gui.window.SetClipboardString(gui.terminal.ActiveBuffer().GetSelectedText())
+				w.SetClipboardString(gui.terminal.ActiveBuffer().GetSelectedText())
 				return
 			case glfw.KeyV:
-				if s, err := gui.window.GetClipboardString(); err == nil {
+				if s, err := w.GetClipboardString(); err == nil {
 					_ = gui.terminal.Paste([]byte(s))
 				}
 				return
