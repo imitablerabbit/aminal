@@ -88,6 +88,9 @@ func (gui *GUI) Render() error {
 	defer wnd.Close()
 
 	cv.SetFont("./gui/packed-fonts/Hack-Regular.ttf", gui.fontScale)
+	textMetrics := cv.MeasureText("█")
+	gui.charWidth = textMetrics.Width
+	gui.charHeight = textMetrics.ActualBoundingBoxAscent + textMetrics.ActualBoundingBoxDescent
 
 	titleChan := make(chan bool, 1)
 
@@ -105,6 +108,7 @@ func (gui *GUI) Render() error {
 			gui.terminal.SetDirty()
 		}
 	})
+
 	w, h := wnd.Window.GetFramebufferSize()
 	gui.resize(wnd.Window, w, h)
 	cv.SetBounds(0, 0, w, h)
@@ -140,10 +144,6 @@ func (gui *GUI) Render() error {
 		}
 	}()
 
-	textMetrics := cv.MeasureText("█")
-	gui.charWidth = textMetrics.Width
-	gui.charHeight = textMetrics.ActualBoundingBoxAscent + textMetrics.ActualBoundingBoxDescent
-
 	bg := gui.config.ColourScheme.Background
 	cv.SetFillStyle(bg[0], bg[1], bg[2])
 	cv.Fill()
@@ -151,7 +151,8 @@ func (gui *GUI) Render() error {
 	wnd.MainLoop(func() {
 
 		if gui.terminal.CheckDirty() {
-			cv.ClearRect(0, 0, float64(gui.width), float64(gui.height))
+			cv.Restore()
+			//cv.ClearRect(0, 0, float64(gui.width), float64(gui.height))
 			lines := gui.terminal.GetVisibleLines()
 			lineCount := int(gui.terminal.ActiveBuffer().ViewHeight())
 			colCount := int(gui.terminal.ActiveBuffer().ViewWidth())
