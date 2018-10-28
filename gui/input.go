@@ -75,6 +75,10 @@ func (gui *GUI) key(w *glfw.Window, key glfw.Key, scancode int, action glfw.Acti
 				gui.logger.Debugf("Sending CTRL^X")
 				gui.terminal.Write([]byte{0x18})
 				return
+			case glfw.KeyL:
+				gui.logger.Debugf("Sending CTRL^L")
+				gui.terminal.Write([]byte{0x0c})
+				return
 			}
 		case modsPressed(mods, glfw.ModAlt, glfw.ModShift):
 			modStr = "4"
